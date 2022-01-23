@@ -42,9 +42,8 @@
 <script>
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  async created() {
+    console.log(await this.$spaceXAPI.lastLaunch());
+  },
 };
 </script>
