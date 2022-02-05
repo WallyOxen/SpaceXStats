@@ -15,7 +15,41 @@ spaceXAPI.interceptors.response.use(
 );
 
 export default {
-  lastLaunch() {
-    return spaceXAPI.get("launches/latest");
+  getCompanyData() {
+    return spaceXAPI.get("company");
+  },
+  getLastLaunch() {
+    const query = {
+      query: {
+        upcoming: false,
+      },
+      options: {
+        limit: 1,
+        sort: {
+          flight_number: "Desc",
+        },
+        populate: [
+          {
+            path: "cores",
+            populate: [
+              {
+                path: "landpad",
+                select: ["full_name"],
+              },
+            ],
+          },
+          {
+            path: "launchpad",
+            select: {
+              name: 1,
+            },
+          },
+          "payloads",
+          "rocket",
+          "ships",
+        ],
+      },
+    };
+    return spaceXAPI.post("launches/query", query);
   },
 };
