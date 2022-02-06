@@ -16,7 +16,7 @@
             background: `url('${patchURL}') no-repeat center center/cover`,
           }"
         ></div>
-        <v-card-text class="launchInfo">
+        <v-card-text class="launchInfo pt-5">
           <p v-if="launchData.flight_number">
             Flight Number: {{ launchData.flight_number }}
           </p>
