@@ -2,10 +2,20 @@
   <div>
     <v-card v-if="shipData" width="20vw" color="grey darken-1" class="shipCard">
       <div class="shipInfo">
-        <v-card-title class="d-flex justify-center font-weight-bold text-h5">
+        <v-card-title
+          class="d-flex justify-center font-weight-bold text-h5"
+          style="height: 15%"
+        >
           {{ shipData.name }}
         </v-card-title>
-        <v-card-text></v-card-text>
+        <v-card-text class="shipContainer">
+          <div class="ship pt-5">
+            <p>Home Port: {{ shipData.home_port }}</p>
+            <p>Year Built: {{ shipData.year_built }}</p>
+            <p>Type: {{ shipData.type }}</p>
+            <p>Launches: {{ shipData.launches.length }}</p>
+          </div>
+        </v-card-text>
       </div>
     </v-card>
   </div>
@@ -33,6 +43,30 @@ export default {
   color: white !important;
 }
 
+.shipInfo {
+  height: 90%;
+}
+
+.shipContainer {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.ship {
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  font-size: 1.1rem;
+  width: fit-content;
+  color: black;
+  text-shadow: none;
+  max-width: 80%;
+  text-align: center;
+  padding: 1rem;
+}
+
 .shipCard::before {
   position: absolute;
   content: "";
@@ -46,7 +80,7 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   opacity: 0.3;
   transition: all 0.6s ease;
-  z-index: 3;
+  z-index: -1;
 }
 
 .shipCard::after {
@@ -62,7 +96,7 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   opacity: 0.3;
   transition: all 0.6s ease;
-  z-index: 3;
+  z-index: -1;
 }
 
 .shipInfo::before {
@@ -78,7 +112,7 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   opacity: 0.3;
   transition: all 0.6s ease;
-  z-index: 3;
+  z-index: -1;
 }
 
 .shipInfo::after {
@@ -94,7 +128,7 @@ export default {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   opacity: 0.3;
   transition: all 0.6s ease;
-  z-index: 3;
+  z-index: -1;
 }
 
 .shipCard:hover:before {
@@ -119,6 +153,16 @@ export default {
   transform: skewY(-30deg) translateY(50%);
   opacity: 0.4;
   animation: 1.5s 0.15s waves linear infinite;
+}
+
+.shipCard .ship {
+  opacity: 0;
+  z-index: 10;
+  transition: all 0.6s ease;
+}
+
+.shipCard:hover .ship {
+  opacity: 1;
 }
 
 @keyframes waves {
