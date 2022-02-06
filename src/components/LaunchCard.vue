@@ -17,19 +17,27 @@
           }"
         ></div>
         <v-card-text class="launchInfo">
-          <p>Flight Number: {{ launchData.flight_number }}</p>
-          <p>
+          <p v-if="launchData.flight_number">
+            Flight Number: {{ launchData.flight_number }}
+          </p>
+          <p v-if="launchData.date_local">
             Launched:
             {{
               `${new Date(launchData.date_local).toLocaleDateString()} 
                 ${new Date(launchData.date_local).toLocaleTimeString()}`
             }}
           </p>
-          <p>Launchpad: {{ launchData.launchpad.name }}</p>
-          <p>Landing Pad: {{ launchData.cores[0].landpad.full_name }}</p>
-          <p>Customers: {{ customerString }}</p>
-          <p>Payload Type: {{ payloadTypes }}</p>
-          <p>Payload Orbit: {{ launchData.payloads[0].orbit }}</p>
+          <p v-if="launchData.launchpad">
+            Launchpad: {{ launchData.launchpad.name }}
+          </p>
+          <p v-if="launchData.cores[0].landpad">
+            Landing Pad: {{ launchData.cores[0].landpad.full_name }}
+          </p>
+          <p v-if="customerString">Customers: {{ customerString }}</p>
+          <p v-if="payloadTypes">Payload Type: {{ payloadTypes }}</p>
+          <p v-if="launchData.payloads[0].orbit">
+            Payload Orbit: {{ launchData.payloads[0].orbit }}
+          </p>
           <p v-if="payloadMass > 0">
             Total Payload Mass: <br />
             {{ payloadMass }} lbs / {{ payloadMassKG }} kg

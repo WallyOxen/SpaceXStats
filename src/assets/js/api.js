@@ -52,6 +52,40 @@ export default {
     };
     return spaceXAPI.post("launches/query", query);
   },
+  getUpcomingLaunches(limit) {
+    const query = {
+      query: {
+        upcoming: true,
+      },
+      options: {
+        limit,
+        sort: {
+          flight_number: "Desc",
+        },
+        populate: [
+          {
+            path: "cores",
+            populate: [
+              {
+                path: "landpad",
+                select: ["full_name"],
+              },
+            ],
+          },
+          {
+            path: "launchpad",
+            select: {
+              name: 1,
+            },
+          },
+          "payloads",
+          "rocket",
+          "ships",
+        ],
+      },
+    };
+    return spaceXAPI.post("launches/query", query);
+  },
   getMostUsedCores() {
     const query = {
       query: {},
