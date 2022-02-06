@@ -105,7 +105,7 @@ export default {
         active: true,
       },
       options: {
-        limit: 1,
+        limit: 8,
       },
     };
     return spaceXAPI.post("ships/query", query);

@@ -44,6 +44,12 @@ export default {
         color: "green",
         nav: "/upcoming",
       },
+      {
+        name: "Ships",
+        icon: "mdi-ship-wheel",
+        color: "blue",
+        nav: "/ships",
+      },
     ],
   }),
 };
