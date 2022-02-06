@@ -25,8 +25,9 @@
           <p>Customers: {{ customerString }}</p>
           <p>Payload Type: {{ payloadTypes }}</p>
           <p>Payload Orbit: {{ launchData.payloads[0].orbit }}</p>
-          <p>
-            Total Payload Mass: {{ payloadMass }} lbs / {{ payloadMassKG }} kg
+          <p v-if="payloadMass > 0">
+            Total Payload Mass: <br />
+            {{ payloadMass }} lbs / {{ payloadMassKG }} kg
           </p>
         </v-card-text>
       </div>
@@ -169,25 +170,25 @@ export default {
 }
 
 .missionCard:hover:before {
-  animation: shake 1s ease;
+  animation: shake 0.1s ease 7;
   transform: skewY(50deg) translateY(60%);
   opacity: 0.4;
 }
 
 .missionCard:hover:after {
-  animation: shake 1s ease;
+  animation: shake 0.1s ease 7;
   transform: skewY(-50deg) translateY(60%);
   opacity: 0.4;
 }
 
 .missionCard:hover .missionInfo:before {
-  animation: shake 1s ease;
+  animation: shake 0.1s ease 7;
   transform: skewY(40deg) translateY(70%);
   opacity: 0.4;
 }
 
 .missionCard:hover .missionInfo:after {
-  animation: shake 1s ease;
+  animation: shake 0.1s ease 7;
   transform: skewY(-40deg) translateY(70%);
   opacity: 0.4;
 }
@@ -202,66 +203,28 @@ export default {
   opacity: 1;
 }
 
+.missionCard .patch {
+  opacity: 1;
+  z-index: -2;
+  transition: all 0.6s ease 0.2s;
+}
+
+.missionCard:hover .patch {
+  opacity: 0;
+}
+
 @keyframes shake {
   0% {
-    top: 10px;
-  }
-  5% {
     top: 0px;
-  }
-  10% {
-    top: -10px;
-  }
-  15% {
-    top: 0px;
-  }
-  20% {
-    top: 10px;
   }
   25% {
-    top: 0px;
-  }
-  30% {
-    top: -10px;
-  }
-  35% {
-    top: 0px;
-  }
-  40% {
     top: 10px;
-  }
-  45% {
-    top: 0px;
   }
   50% {
-    top: -10px;
-  }
-  55% {
     top: 0px;
-  }
-  60% {
-    top: 10px;
-  }
-  65% {
-    top: 0px;
-  }
-  70% {
-    top: -10px;
   }
   75% {
-    top: 0px;
-  }
-  80% {
-    top: 10px;
-  }
-  85% {
-    top: 0px;
-  }
-  90% {
     top: -10px;
-  }
-  95% {
-    top: 0px;
   }
   100% {
     top: 0px;
