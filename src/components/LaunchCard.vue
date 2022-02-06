@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-card v-if="launchData" width="20vw" height="50vh" class="missionCard">
+    <v-card
+      v-if="launchData"
+      width="20vw"
+      color="grey darken-1"
+      class="missionCard"
+    >
       <div class="missionInfo">
         <v-card-title class="d-flex justify-center font-weight-bold text-h4">
           {{ launchData.name }}
@@ -76,10 +81,10 @@ export default {
 .missionCard {
   font-family: "DM Sans", sans-serif;
   position: relative;
-  margin-left: 10vw;
   overflow: hidden;
   z-index: 1;
-  height: 100%;
+  height: 95%;
+  color: white !important;
 }
 
 .missionInfo {

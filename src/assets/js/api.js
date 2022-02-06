@@ -18,13 +18,13 @@ export default {
   getCompanyData() {
     return spaceXAPI.get("company");
   },
-  getLastLaunch() {
+  getPastLaunches(limit) {
     const query = {
       query: {
         upcoming: false,
       },
       options: {
-        limit: 6,
+        limit,
         sort: {
           flight_number: "Desc",
         },
@@ -51,9 +51,6 @@ export default {
       },
     };
     return spaceXAPI.post("launches/query", query);
-  },
-  getPastLaunches() {
-    return spaceXAPI.get("launches/past");
   },
   getMostUsedCores() {
     const query = {
