@@ -21,7 +21,8 @@
             Flight Number: {{ launchData.flight_number }}
           </p>
           <p v-if="launchData.date_local">
-            Launched:
+            {{ launchData.upcoming ? "Planned Launch" : "Launched" }}:
+            <br />
             {{
               `${new Date(launchData.date_local).toLocaleDateString()} 
                 ${new Date(launchData.date_local).toLocaleTimeString()}`
@@ -111,6 +112,7 @@ export default {
   color: black;
   text-shadow: none;
   max-width: 80%;
+  text-align: center;
 }
 
 .patch {
