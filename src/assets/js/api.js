@@ -24,7 +24,7 @@ export default {
         upcoming: false,
       },
       options: {
-        limit: 1,
+        limit: 6,
         sort: {
           flight_number: "Desc",
         },
@@ -51,5 +51,32 @@ export default {
       },
     };
     return spaceXAPI.post("launches/query", query);
+  },
+  getPastLaunches() {
+    return spaceXAPI.get("launches/past");
+  },
+  getMostUsedCores() {
+    const query = {
+      query: {},
+      options: {
+        limit: 10,
+        sort: {
+          reuse_count: "Desc",
+        },
+        populate: ["launches"],
+      },
+    };
+    return spaceXAPI.post("cores/query", query);
+  },
+  getShips() {
+    const query = {
+      query: {
+        active: true,
+      },
+      options: {
+        limit: 1,
+      },
+    };
+    return spaceXAPI.post("ships/query", query);
   },
 };

@@ -5,6 +5,12 @@
         <v-card-title class="d-flex justify-center font-weight-bold text-h4">
           {{ launchData.name }}
         </v-card-title>
+        <div
+          class="patch"
+          :style="{
+            background: `url('${patchURL}') no-repeat center center/cover`,
+          }"
+        ></div>
         <v-card-text class="launchInfo">
           <p>Flight Number: {{ launchData.flight_number }}</p>
           <p>
@@ -55,6 +61,11 @@ export default {
         return currentMass + payload.mass_kg;
       }, 0);
     },
+    patchURL() {
+      return (
+        this.launchData.links.patch.large || require("@/assets/falcon9.jpg")
+      );
+    },
   },
 };
 </script>
@@ -83,6 +94,18 @@ export default {
   border-radius: 10px;
   font-size: 1.1rem;
   width: fit-content;
+  color: black;
+  text-shadow: none;
+  max-width: 80%;
+}
+
+.patch {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
 }
 
 .missionCard::before {

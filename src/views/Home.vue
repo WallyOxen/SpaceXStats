@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex flex-wrap">
     <launchCard
       v-for="launch in launchData"
       :key="launch.id"
